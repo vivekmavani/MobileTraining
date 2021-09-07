@@ -14,6 +14,8 @@ void main() {
 //     }
 //   }
 
+// list.sort();
+
   int count =  list.length-1;
   int ty = 0;
   for(int ty = 0; ty<count;list[ty] != 1? ty++:ty)
