@@ -1,4 +1,4 @@
-//Bubble sort:
+//Bubble sort
 void bubbleSort(var list){
   int i,j;
   for(i=0;i<list.length-1;i++){

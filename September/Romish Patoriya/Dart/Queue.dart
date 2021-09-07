@@ -34,7 +34,8 @@ class Queue {
       itemCount++;
 
       print('$data was added.');
-    } else {
+    } 
+    else {
       print('queue is full.');
     }
   }

@@ -1,4 +1,4 @@
-//Stack Data structure
+//Stack Data Structure
 
 class Stack{
   
