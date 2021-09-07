@@ -37,6 +37,7 @@ class Stack {
  
     print("\n--------------------------\nPopped Element is :"+this.items.removeLast().toString());
     print("--------------------------\nStack after removing Element :\n--------------------------");
+   
     for(var item in items.reversed)
     {
     print("$item");
