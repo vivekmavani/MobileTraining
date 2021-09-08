@@ -6,9 +6,9 @@ void main() {
   int l = array.length - 1;
   for (int i = 0; i < l;) {
     if (array[i] == 1) {
-      int t=array[i];
-      array[i]=array[l];
-      array[l]=t;
+      int t = array[i];
+      array[i] = array[l];
+      array[l] = t;
       l--;
     } else {
       i++;
