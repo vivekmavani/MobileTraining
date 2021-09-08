@@ -5,7 +5,7 @@ class  stack
   var array_list=[];
   int top=-1;
 
-  void push(int n)
+  void push(dynamic str)
   {
     if(top>=len-1)
     {
@@ -13,7 +13,7 @@ class  stack
     }
     else
     {
-      array_list.add(n);
+      array_list.add(str);
       top++;
     }
   }
@@ -39,13 +39,14 @@ class  stack
 void main()
 {
   stack s =new stack();
-  print("pushing some numbers into the stack");
+  print("pushing some element into the stack");
   s.push(3);
-  s.push(4);
+  s.push('abc');
+  s.push('#3%');
   s.push(5);
   print("Here is the stack view after push");
   s.show();
-  print("Popping the last numeber from the stack");
+  print("Popping the last element from the stack");
   s.pop();
   print("Here is the stack view after pop");
   s.show();

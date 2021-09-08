@@ -1,18 +1,16 @@
 //Queue Data Structure
 class Queue {
-  var queue = [];
+  List queue = [];
   int Max = 5;
   int rear = -1;
   int front = 0;
   int itemCount = 0;
 
-  int peek() {
+  void peek() {
     if (!isempty()) {
       print('${queue[front]} for peek.');
-      return queue[front];
     } else {
       print('Queue is empty.');
-      return 0;
     }
   }
 
@@ -24,7 +22,7 @@ class Queue {
     return itemCount == 0;
   }
 
-  void enqueue(int data) {
+  void enqueue(var data) {
     if (!isfull()) {
       if (rear == Max - 1) {
         rear = -1;
@@ -34,26 +32,23 @@ class Queue {
       itemCount++;
 
       print('$data was added.');
-    } 
-    else {
+    } else {
       print('queue is full.');
     }
   }
 
-  int dequeue() {
+  void dequeue() {
     if (isempty()) {
       print('Queue is qmpty.');
-      return 0;
-    }
+    } else {
+      int data = queue[front++];
+      if (front == Max) {
+        front = 0;
+      }
 
-    int data = queue[front++];
-    if (front == Max) {
-      front = 0;
+      print('$data was removed.');
+      itemCount--;
     }
-
-    print('$data was removed.');
-    itemCount--;
-    return data;
   }
 }
 
@@ -67,10 +62,11 @@ void main() {
   q.peek();
   q.enqueue(13);
   q.enqueue(20);
-  q.enqueue(30);
+  q.enqueue('45.00');
   q.dequeue();
-  q.enqueue(14);
+  q.enqueue('string');
   print(q.itemCount);
   print(q.isfull());
   print(q.isempty());
+  q.peek();
 }
