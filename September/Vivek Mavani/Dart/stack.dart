@@ -2,15 +2,15 @@ void main() {
   Stack s = Stack();
   s.push(1);
   s.push(2);
-  s.push(3);
-  s.push(4);
-  s.push(4);
+  s.push(0);
+  s.push('v');
+  s.push("vivek");
   s.push(4);
   s.push(1);
   s.push(2);
   s.push(3);
   s.push(4);
-  s.push(4);
+  s.push(4.0);
   s.list();
   s.peek();
   s.pop();
@@ -32,7 +32,7 @@ class Stack {
   final max = 10;
   int top = -1;
 
-  void push(int a) {
+  void push(dynamic a) {
     if (top >= max - 1) {
       print("stack is overflow");
     } else {
