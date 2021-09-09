@@ -8,8 +8,8 @@ class Stack {
   Stack(this.items);
  
   //for pushing item
-  List push(String item,List $items) {
-    if(item.isEmpty){
+  List push(dynamic item,List $items) {
+    if(item is String && item.isEmpty){
 
       print("\n *****Null value is not allowed*****");
       

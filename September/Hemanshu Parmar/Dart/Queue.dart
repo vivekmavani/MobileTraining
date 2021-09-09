@@ -10,8 +10,8 @@ class Queue {
   Queue(this.items);
  
   //for inserting item at front
-  List enqueue(String item,List $items) {
-    if(item.isEmpty){
+  List enqueue(dynamic item,List $items) {
+    if(item is String && item.isEmpty){
       print("\n *****Null value is not allowed*****");
     }else{
         this.items.add(item);
@@ -44,9 +44,9 @@ class Queue {
   }
   
   //for checking perticular element in list
-  bool peep(String item,List items){
+  bool peep(dynamic item,List items){
     
-    if(item.isEmpty){
+    if(item is String && item.isEmpty){
       print("\nPlease provide element for searching.");
       return false;
     }
@@ -70,7 +70,7 @@ class Queue {
 void main() {
   
  //creating list 
-  List myList = ["abc","786","hello","758.47347"];
+  List myList<dynamic> = ["abc","786","hello","758.47347"];
  
  // print Initial stack stage
   print("--------------------------\nDefault Queue:\n--------------------------");
