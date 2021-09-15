@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:trywidgests/app/sign_in/sign_in_page.dart';
+import 'package:layoutbasic/screens/makenewpage.dart';
 
 void main() {
   runApp(MyApp());
 }
 
+
 class MyApp extends StatelessWidget {
-  //const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
-      title: 'Time Tracker',
+      debugShowCheckedModeBanner: false,
+      title: 'App Title',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
+       primarySwatch: Colors.pink,
       ),
-      home: SignInPage(),
+      home: MakenewPage(),
+
     );
   }
 }
+
 
