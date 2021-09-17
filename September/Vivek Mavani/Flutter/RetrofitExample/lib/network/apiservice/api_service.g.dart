@@ -8,7 +8,7 @@ part of 'api_service.dart';
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'http://www.demoaws.picsy.in/api/yearbook/getyearbook';
+    baseUrl ??= 'http://www.demoaws.picsy.in/api';
   }
 
   final Dio _dio;
@@ -16,17 +16,18 @@ class _ApiService implements ApiService {
   String? baseUrl;
 
   @override
-  Future<Responses> fetchAlbum() async {
+  Future<BookResponses> fetchAlbum() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<Responses>(
+        _setStreamType<BookResponses>(
             Options(method: 'GET', headers: <String, dynamic>{}, extra: _extra)
-                .compose(_dio.options, '/28a6883292e53e1df2792d7fcb867108',
+                .compose(_dio.options,
+                    '/yearbook/getyearbook/28a6883292e53e1df2792d7fcb867108',
                     queryParameters: queryParameters, data: _data)
                 .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Responses.fromJson(_result.data!);
+    final value = BookResponses.fromJson(_result.data!);
     return value;
   }
 
