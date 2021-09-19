@@ -8,8 +8,8 @@ class Stack {
   Stack(this.items);
  
   //for pushing item
-  List push(String item,List $items) {
-    if(item.isEmpty){
+  List push(dynamic item,List $items) {
+    if(item is String && item.isEmpty){
 
       print("\n *****Null value is not allowed*****");
       
@@ -37,6 +37,7 @@ class Stack {
  
     print("\n--------------------------\nPopped Element is :"+this.items.removeLast().toString());
     print("--------------------------\nStack after removing Element :\n--------------------------");
+   
     for(var item in items.reversed)
     {
     print("$item");
@@ -85,3 +86,49 @@ void main() {
  
   
 }
+
+---------------------------------Output---------------------------------
+
+--------------------------
+Default stack:
+--------------------------
+758.47347
+hello
+786
+abc
+
+ *****Null value is not allowed*****
+
+--------------------------
+Popped Element is :758.47347
+--------------------------
+Stack after removing Element :
+--------------------------
+hello
+786
+abc
+
+--------------------------
+Stack after adding 404 :
+--------------------------
+404
+hello
+786
+abc
+
+--------------------------
+Popped Element is :404
+--------------------------
+Stack after removing Element :
+--------------------------
+hello
+786
+abc
+
+--------------------------
+Stack after adding xyz :
+--------------------------
+xyz
+hello
+786
+abc
