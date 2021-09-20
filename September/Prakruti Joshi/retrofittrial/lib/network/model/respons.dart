@@ -8,7 +8,7 @@ class Album {
  Album.fromJson(Map<String, dynamic> json) {
   response = json['response'] != null
       ? Responses.fromJson(json['response'])
-      : null!;
+      : null;
 }
 
   Map<String, dynamic> toJson() {
@@ -80,14 +80,29 @@ class Data{
 }
 
 class YearbookDescription {
-  late String desc;
-  late String size;
-  late String price;
-  late String sInfo;
+  final String desc;
+  final String size;
+  final String price;
+  final String sInfo;
 
   YearbookDescription({required this.desc,required this.size, required this.price, required this.sInfo});
 
-  YearbookDescription.fromJson(Map<String, dynamic> json) {
+  factory YearbookDescription.fromJson(Map<String, dynamic> json) =>
+      YearbookDescription(
+        desc: json["Desc"] ?? "",
+        size: json["Size"]?? "",
+        price: json["Price"] ?? "",
+        sInfo: json["sInfo"]?? "",
+      );
+  Map<String, dynamic> toJson() => {
+    "Desc": desc,
+    "Price": price,
+    "Size" :size,
+    "sInfo" : sInfo,
+  };
+
+  /* YearbookDescription.fromJson(Map<String, dynamic> json) {
+
     desc = json['Desc'] ?? '';
     size = json['Size'] ?? '';
     price = json['Price'] ?? '';
@@ -101,5 +116,5 @@ class YearbookDescription {
     data['Price'] = price;
     data['sInfo'] = sInfo;
     return data;
-  }
+  }*/
 }

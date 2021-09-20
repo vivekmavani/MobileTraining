@@ -18,12 +18,12 @@ abstract class ApiService{
             'Authorization': 'Bearer 950756f02948a64e992eaee4626a4818db59c4ed',
           }
       );
-
+          dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
     return _ApiService(dio,baseUrl:baseUrl);
 
 }
 
-@GET ('/yearbook/getyearbook/28a6883292e53e1df2792d7fcb867108')
-Future<List<Album>> fetchAlbum();
+@GET('/yearbook/getyearbook/28a6883292e53e1df2792d7fcb867108')
+Future<Album> fetchAlbum();
 
 }
