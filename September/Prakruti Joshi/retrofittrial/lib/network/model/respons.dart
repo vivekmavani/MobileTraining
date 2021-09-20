@@ -1,5 +1,3 @@
-
-
 class Album {
   Responses? response;
 
