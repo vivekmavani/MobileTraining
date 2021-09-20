@@ -7,6 +7,12 @@ void bubbleSort_asc(List list) {
   
   //n = max lengh of list
   int n = list.length;
+
+  //check if less than or single element present in list
+  if (n <= 1){
+    return;
+  }
+
   for (var i = 0; i < n; i++) {
     
     for (var j = 0; j < n - i - 1; j++) {
@@ -61,3 +67,9 @@ void main(){
   print("List in Desc order: $list");
   
 }
+
+---------------------------------Output---------------------------------
+
+Default List: [10, 88, 45, -345, 101.234]
+List in Asc order: [-345, 10, 45, 88, 101.234]
+List in Desc order: [101.234, 88, 45, 10, -345]

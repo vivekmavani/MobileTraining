@@ -15,11 +15,16 @@ void setSalary(List sal){
  }
 
   //method for giving bonus to employees
-void giveBonusToEmployees(List salary_list,int bonus){
-    for (int salary in salary_list){
+void giveBonusToEmployees(int bonus){
+  
+  if(getSalary().length<1){
+    print("Please provide atleast one salary");
+    return;
+  }
+    for (int salary in getSalary()){
       if(salary <= 20000 && bonus > 0){
         salary=salary+bonus;
-      print(salary);
+      print("salary after incrementing $bonus is :"+salary.toString());
        
       }
     }
@@ -31,15 +36,24 @@ void giveBonusToEmployees(List salary_list,int bonus){
 
 
 void main(){
-  List<int> sal_list=[12345,3000,5000,44000,50000];
+
+  //create list of salaries
+  List<int> sal_list=[12345,24000,30000,15000];
   
+  //obj of Emplyoee class
   Employee e1=new Employee();
   
+  //calling setter and getter methods
   e1.setSalary(sal_list);
-  print(e1.getSalary());
+  print("Default salaries:"+e1.getSalary().toString());
   
   //give bonus to whom where salary is below 20000
-  e1.giveBonusToEmployees(sal_list,1001);
+  e1.giveBonusToEmployees(1001);
 
   
 }
+---------------------------------Output---------------------------------
+
+Default salaries:[12345, 24000, 30000, 15000]
+salary after incrementing 1001 is :13346
+salary after incrementing 1001 is :16001

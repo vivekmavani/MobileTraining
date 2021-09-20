@@ -20,6 +20,7 @@ class BinarySeparator{
     else{
  
     for (int i in list){
+      
     if(i==0){
       zero_count++;
     }
@@ -45,4 +46,12 @@ void main(){
   b1.sortBinaryList(list);
   //check no. of 0 and 1
   b1.checkForZeroAndOne(list);
+
 }
+
+---------------------------------Output---------------------------------
+
+Default List :[1, 0, 0, 1, 1, 1, 0, 1]
+Sorted Binary List :[0, 0, 0, 1, 1, 1, 1, 1]
+Zeros present in List :3
+Ones present in List :5
