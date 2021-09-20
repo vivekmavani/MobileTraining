@@ -1,11 +1,10 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 import 'package:retrofittrial/network/apiservice/api_service.dart';
 import 'package:retrofittrial/network/model/respons.dart';
-import 'package:http/http.dart'; 
 
 void main() {
   runApp(const MyApp());
@@ -41,16 +40,16 @@ FutureBuilder<Album> _buildbody(BuildContext context) {
             );
           }
         } on dio.DioError catch (e) {
-          if (e.type == DioErrorType.response) {
+          if (e.type == dio.DioErrorType.response) {
             print('catched');
           }
-          if (e.type == DioErrorType.connectTimeout) {
+          if (e.type == dio.DioErrorType.connectTimeout) {
             print('check your connection');
           }
-          if (e.type == DioErrorType.receiveTimeout) {
+          if (e.type == dio.DioErrorType.receiveTimeout) {
             print('unable to connect to the server');
           }
-          if (e.type == DioErrorType.other) {
+          if (e.type == dio.DioErrorType.other) {
             print('Something went wrong');
           }
           return const Center(
@@ -64,22 +63,43 @@ FutureBuilder<Album> _buildbody(BuildContext context) {
   Widget coverTypes(BuildContext context, List<Data> posts) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(),
+      drawer: Drawer(), 
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        actions: [
+          Icon(Icons.notifications_none_outlined),
+          Padding(
+            padding: EdgeInsets.all(12),
+            child: ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(primary: Colors.pink),
+              child: Text('Chat'),
+            ),
+          ),
+          Icon(Icons.more_vert),
+        ],
+        iconTheme: IconThemeData(color: Colors.black87),
+        title: Image.asset(
+          'assets/appicon.png',
+          fit: BoxFit.fitHeight,
+        ),
+        centerTitle: true,
+      ),
       body: 
       Container(
-       // height: MediaQuery.of(context).size.height,
-       // width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
         color: Colors.white,
         child: ListView.builder(itemBuilder: (context,index)
         {
+          const Padding(padding: EdgeInsets.all(20));
           return
             Card(
                 margin: const EdgeInsets.all(5),
                 clipBehavior: Clip.hardEdge,
                 child:    
                 Container(
-                  
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(8),
                   child:
                      Column(
                        children: [
@@ -90,11 +110,12 @@ FutureBuilder<Album> _buildbody(BuildContext context) {
                              FittedBox(
                               child: Image.network(
                                   posts[index].img_http_thumb, 
-                                  height: 150,
-                                  width:150,
+                                    height: 100.0,
+                                    width: 100.0,
+                                    fit: BoxFit.cover,
                               ),   
                              ),
-
+                            const SizedBox(width: 10),
                              //written details
                             details(posts, index) ,
                            ],
@@ -115,12 +136,12 @@ FutureBuilder<Album> _buildbody(BuildContext context) {
                                child: 
                                Text(
                                  posts[index].yearbook_description.price,
-                                 style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
+                                 style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
                                ),
                              ),
                              ),
                              
-                            SizedBox(width: 45),
+                            const SizedBox(width: 45),
                             //buttons
                           
                             Expanded(
@@ -181,23 +202,73 @@ FutureBuilder<Album> _buildbody(BuildContext context) {
 
 Widget details(List<Data> posts, int index)
 {
-  return Column(
+  return Expanded(child: 
+  Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text(posts[index].yearbook_name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-      SizedBox(height: 5),
-      Text(posts[index].yearbook_description.desc, style: const TextStyle(fontWeight: FontWeight.normal, fontSize:12)),
-     // const Text('Pages:',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 )),
-     SizedBox(height: 5),
-      Row(children: [
-        Text("Pages: ",  style: const TextStyle(fontWeight: FontWeight.bold, fontSize:12)),
-          Text("MIN 20 - MAX 80",  style: const TextStyle(fontWeight: FontWeight.normal, fontSize:12)),
-      ]),
-      SizedBox(height: 5),
-      Row(children:[
-      const Text('Est. Delivery',style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12 )),
-      const Text('5-7 working days', style: TextStyle(fontWeight: FontWeight.normal, fontSize:12)),
-      ]),
+      Text(
+        posts[index].yearbook_name, 
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+           fontSize: 18),
+          ),
+
+      const SizedBox(height: 8),
+      
+      Text(
+        posts[index].yearbook_description.desc,
+         style: const TextStyle(
+           fontWeight: FontWeight.normal, 
+           fontSize:12,
+           color: Colors.grey
+            ),
+           ),
+
+     const SizedBox(height: 5),
+
+      Row(
+        children: 
+        const [
+        Text(
+          "Pages: ", 
+           style: TextStyle(
+             fontWeight: FontWeight.bold, 
+             fontSize:12
+             ),
+             ),
+
+          Text(
+            "MIN 20 - MAX 80",  
+            style: TextStyle(
+              fontWeight: FontWeight.normal,
+               fontSize:12, color: Colors.grey
+               ),
+               ),
+        ]
+      ),
+
+      const SizedBox(height: 5),
+
+      Row(
+        children:
+        const [
+      Text(
+        'Est. Delivery ',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+           fontSize: 12 ),
+          ),
+
+      Text(
+        '5-7 working days',
+         style: TextStyle(
+           fontWeight: FontWeight.normal, 
+           fontSize:12, color: Colors.grey
+           ),
+           ),
+        ]
+      ),
   ],
+  ),
   );
 }
