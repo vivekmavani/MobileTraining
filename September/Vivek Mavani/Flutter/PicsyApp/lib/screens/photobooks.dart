@@ -2,9 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:taskretofitpicsy/network/apiservice/api_service.dart';
-import 'package:taskretofitpicsy/network/model/bookresponses.dart';
-import 'package:taskretofitpicsy/network/model/datas.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:taskretofitpicsy/cubi.dart';
 class MyHomePage extends StatefulWidget {
@@ -138,10 +135,16 @@ class _MyHomePageState extends State<MyHomePage> {
           child: BlocBuilder<YearbookCubit, YearbookState>(
   builder: (context, state) {
     if(!(state is YearbookLoading))
-       return Center(child: CircularProgressIndicator());
-    final posts  = (state as YearbookLoading).bookResponses;
+      {
+        print('CircularProgressIndicator');
+        return const Center(child: CircularProgressIndicator());
+      }else
+        {
+          print('DOne');
+          final posts  = (state as YearbookLoading).bookResponses;
+          return _buildListView(context, posts.response!.data);
+        }
 
-    return _buildListView(context, posts.response!.data);
   },
 ),
           color: Colors.grey.shade200,
@@ -237,7 +240,7 @@ Widget _secondBlock(List<Datas> posts, int index) => Row(
     Container(
       padding: const EdgeInsets.only(left: 6.0),
       child: Text(
-        posts[index].yearbook_description.Price,
+        posts[index].yearbook_description.Price.toString(),
         style:
         const TextStyle(fontWeight: FontWeight.bold, color: Colors.black87,fontSize:18.0),
       ),
@@ -280,14 +283,11 @@ Widget _button(IconData pending, String title, Color grey) => TextButton.icon(
 Widget _firstblock(List<Datas> posts, int index) => Container(
   child: Row(
     children: [
-      Hero(
-        tag: 'yearbookitem$index',
-        child: Image.network(
-          posts[index].img_http_thumb,
-          height: 100.0,
-          width: 100.0,
-          fit: BoxFit.cover,
-        ),
+      Image.network(
+        posts[index].img_http_thumb.toString(),
+        height: 100.0,
+        width: 100.0,
+        fit: BoxFit.cover,
       ),
       const SizedBox(
         width: 10.0,
@@ -300,10 +300,13 @@ Widget _addtext(List<Datas> posts, int index) => Expanded(
   child: Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Texts(
-        title :posts[index].yearbook_name,
-        fontWeight: FontWeight.bold,
-        color: Colors.black87,
+      Hero(
+        tag: 'yearbookitem$index',
+        child: Texts(
+          title :posts[index].yearbook_name.toString(),
+          fontWeight: FontWeight.bold,
+          color: Colors.black87,
+        ),
       ),
 
       const SizedBox(
