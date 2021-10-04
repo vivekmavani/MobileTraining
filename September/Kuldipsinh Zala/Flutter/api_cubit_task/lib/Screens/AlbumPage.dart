@@ -169,8 +169,8 @@ class albumpagebody extends StatelessWidget {
                             ),
                             Text((index % 2 == 0)
                                 ? (index != bookData.pages.length - 2)
-                                    ? "Page ${index + 1}-${index + 2}"
-                                    : "Page ${index + 1}"
+                                    ? "Page ${index}-${index + 1}"
+                                    : "Page ${index}"
                                 : ""),
                             //we can also use this
                             /*Text((index % 2 == 0)
