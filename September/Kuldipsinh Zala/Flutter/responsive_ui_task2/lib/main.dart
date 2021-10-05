@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:responsive_ui_task2/Presentation/Screens/deskscreen.dart';
-import 'package:responsive_ui_task2/Presentation/Screens/home_page.dart';
-import 'package:responsive_ui_task2/Presentation/Screens/tabscreen.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/MainScreen/deskscreen.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/MainScreen/home_page.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/MainScreen/tabscreen.dart';
 import 'package:responsive_ui_task2/responsive.dart';
 
 void main() {
@@ -19,7 +19,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      // home: HomePage(),
       home: Responsive(
         mobile: HomePage(),
         tablet: TabScreen(),

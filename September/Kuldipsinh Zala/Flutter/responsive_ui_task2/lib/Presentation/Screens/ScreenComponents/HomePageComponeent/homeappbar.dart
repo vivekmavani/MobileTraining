@@ -65,6 +65,7 @@ class CustomAppbar extends StatelessWidget {
               //     : BoxShape.circle,
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
                     onPressed: () {},

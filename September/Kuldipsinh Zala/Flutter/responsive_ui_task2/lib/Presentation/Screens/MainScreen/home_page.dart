@@ -7,11 +7,14 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-      backgroundColor: Colors.white,
-      drawer: CustomDrawer(),
-      body: HomePageBody(),
-    ));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SafeArea(
+          child: Scaffold(
+        backgroundColor: Colors.white,
+        drawer: CustomDrawer(),
+        body: HomePageBody(),
+      )),
+    );
   }
 }

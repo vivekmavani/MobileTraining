@@ -73,11 +73,14 @@ class CompetitionsBody extends StatelessWidget {
                             child: Stack(
                               children: [
                                 CircleAvatar(
-                                  backgroundColor:
-                                      Colors.blueAccent.withOpacity(0.1),
-                                  child: Image.network(
-                                      eventitems[index].imgurl[0]),
-                                ),
+                                    backgroundColor:
+                                        Colors.blueAccent.withOpacity(0.1),
+                                    // radius: 22,
+                                    backgroundImage: NetworkImage(
+                                        eventitems[index].imgurl[0])),
+                                // child: Image.network(
+                                //     eventitems[index].imgurl[0]),
+                                // ),
                                 for (int i = 1;
                                     i <= 4 &&
                                         i < eventitems[index].imgurl.length;
@@ -85,11 +88,12 @@ class CompetitionsBody extends StatelessWidget {
                                   Positioned(
                                     left: i * 25,
                                     child: CircleAvatar(
-                                      backgroundColor:
-                                          Colors.blueAccent.withOpacity(0.1),
-                                      child: Image.network(
-                                          eventitems[index].imgurl[i]),
-                                    ),
+                                        backgroundColor:
+                                            Colors.blueAccent.withOpacity(0.1),
+                                        backgroundImage: NetworkImage(
+                                            eventitems[index].imgurl[i])),
+                                    //   child: Image.network(
+                                    //       eventitems[index].imgurl[i]),
                                   ),
                                 if (eventitems[index].imgurl.length - 5 != 0 &&
                                     5 < eventitems[index].imgurl.length)
@@ -100,19 +104,9 @@ class CompetitionsBody extends StatelessWidget {
                                           "+${eventitems[index].imgurl.length - 5}"),
                                     ),
                                   ),
-                                // if (eventitems[index].imgurl.length - 2 != 0)
-                                //   Positioned(
-                                //     child: CircleAvatar(
-                                //       child: Text(
-                                //           "+${eventitems[index].imgurl.length - 3}"),
-                                //     ),
-                                //   ),
                               ],
                             ),
                           ),
-                          // Spacer(
-                          //   flex: 2,
-                          // ),
                           if (eventitems[index].isbutton)
                             ElevatedButton(
                               style: ButtonStyle(
