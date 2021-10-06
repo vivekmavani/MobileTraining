@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_ui_task2/Presentation/Screens/ScreenComponents/HomePageComponeent/homepagebody.dart';
+import 'package:responsivetask2/widgets/body.dart';
 
-import '../Drawer/customdrawer.dart';
+import 'package:responsivetask2/widgets/drawer.dart';
 
 class DeskScreen extends StatefulWidget {
   const DeskScreen({Key? key}) : super(key: key);
@@ -19,12 +19,12 @@ class _DeskScreenState extends State<DeskScreen> {
           backgroundColor: Colors.white,
           body: Row(
             children: [
-              Expanded(flex: 2, child: CustomDrawer()),
+              const Expanded(flex: 2, child: drawer()),
               VerticalDivider(
                 thickness: 2,
                 color: Colors.grey.withOpacity(0.5),
               ),
-              Expanded(flex: 6, child: HomePageBody())
+              const Expanded(flex: 6, child: mainbody())
             ],
           ),
         ));

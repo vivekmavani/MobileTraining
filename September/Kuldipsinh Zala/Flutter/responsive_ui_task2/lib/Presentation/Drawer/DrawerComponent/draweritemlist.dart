@@ -1,6 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_ui_task2/Presentation/Drawer/DrawerComponent/logoutdialog.dart';
 import 'package:responsive_ui_task2/Presentation/Drawer/DrawerComponent/protag.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/MainScreen/home_page.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/coursescreen.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/discussionpage.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/reviewspage.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/settingpage.dart';
+import 'package:responsive_ui_task2/Presentation/Screens/studentspage.dart';
 import 'package:responsive_ui_task2/constatnts.dart';
 import 'package:responsive_ui_task2/responsive.dart';
 
@@ -57,6 +64,57 @@ class _DrawerItemsState extends State<DrawerItems> {
             child: ListTile(
               onTap: () {
                 ChangePage(index);
+                if (Responsive.isMobile(context)) {
+                  Navigator.pop(context);
+
+                  switch (index) {
+                    case 0:
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                      break;
+
+                    case 1:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CoursesPage()));
+                      break;
+
+                    case 2:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StudentPage()));
+                      break;
+
+                    case 3:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DiscussionsPage()));
+                      break;
+
+                    case 4:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ReviewsPage()));
+                      break;
+
+                    case 5:
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => SettingPage()));
+                      break;
+
+                    case 6:
+                      showDialog(
+                          context: context,
+                          builder: (context) => LogoutDialog());
+                      break;
+                  }
+                }
               },
               leading: Icon(
                 icons[index],

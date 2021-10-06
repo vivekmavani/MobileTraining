@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_ui_task2/Model/competitiondatas.dart';
-import 'package:responsive_ui_task2/constatnts.dart';
-import 'package:responsive_ui_task2/responsive.dart';
-import 'package:responsive_ui_task2/style.dart';
+import 'package:responsivetask2/model/competition.dart';
+import 'package:responsivetask2/widgets/constants.dart';
+import 'package:responsivetask2/widgets/responsive.dart';
+import 'package:responsivetask2/widgets/textstyle.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class CompetitionsBody extends StatelessWidget {
   const CompetitionsBody({Key? key}) : super(key: key);
@@ -14,7 +15,7 @@ class CompetitionsBody extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal:
-              (Responsive.isDesktop(context) ? desktoppadding : defaultpadding),
+          (Responsive.isDesktop(context) ? desktoppadding : defaultpadding),
           vertical: defaultpadding),
       child: GridView.builder(
           shrinkWrap: true,
@@ -25,8 +26,8 @@ class CompetitionsBody extends StatelessWidget {
               mainAxisSpacing: 15.0,
               childAspectRatio: (!Responsive.isMobile(context) ? 1.7 : 1.3) /
                   (Responsive.isTablet(context) ? 1.2 : 1)
-              // devicewidth /(deviceheight * (Responsive.isMobile(context) ? 0.65 : 1.5))
-              ),
+            // devicewidth /(deviceheight * (Responsive.isMobile(context) ? 0.65 : 1.5))
+          ),
           itemCount: eventitems.length,
           itemBuilder: (context, index) {
             return Container(
@@ -70,30 +71,26 @@ class CompetitionsBody extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Stack(
+                            child: Row(
                               children: [
                                 CircleAvatar(
-                                    backgroundColor:
-                                        Colors.blueAccent.withOpacity(0.1),
-                                    // radius: 22,
-                                    backgroundImage: NetworkImage(
-                                        eventitems[index].imgurl[0])),
-                                // child: Image.network(
-                                //     eventitems[index].imgurl[0]),
-                                // ),
+                                  backgroundColor:
+                                  Colors.blueAccent.withOpacity(0.1),
+                                  backgroundImage: CachedNetworkImageProvider(
+                                      eventitems[index].imgurl[0]),
+                                ),
                                 for (int i = 1;
-                                    i <= 4 &&
-                                        i < eventitems[index].imgurl.length;
-                                    i++)
+                                i <= 4 &&
+                                    i < eventitems[index].imgurl.length;
+                                i++)
                                   Positioned(
                                     left: i * 25,
                                     child: CircleAvatar(
-                                        backgroundColor:
-                                            Colors.blueAccent.withOpacity(0.1),
-                                        backgroundImage: NetworkImage(
-                                            eventitems[index].imgurl[i])),
-                                    //   child: Image.network(
-                                    //       eventitems[index].imgurl[i]),
+                                      backgroundColor:
+                                      Colors.blueAccent.withOpacity(0.1),
+                                      backgroundImage: CachedNetworkImageProvider(
+                                          eventitems[index].imgurl[i]),
+                                    ),
                                   ),
                                 if (eventitems[index].imgurl.length - 5 != 0 &&
                                     5 < eventitems[index].imgurl.length)
@@ -116,7 +113,7 @@ class CompetitionsBody extends StatelessWidget {
                                   shape: MaterialStateProperty.all(
                                       RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(18)))),
+                                          BorderRadius.circular(18)))),
                               onPressed: () {},
                               child: Text("JOIN EVENT"),
                             )
