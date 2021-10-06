@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:taskretofitpicsy/bloc/yearbookbloc_bloc.dart';
 import 'package:taskretofitpicsy/cubi.dart';
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -15,8 +16,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
 
-    BlocProvider.of<YearbookCubit>(context).fetchyearbook();
-
+    //BlocProvider.of<YearbookCubit>(context).fetchyearbook();
+    //BlocProvider.of<YearbookblocBloc>(context).onEvent(YearbookLoadingEvent());
     return Scaffold(
       drawer: Drawer(
         child: Column(
@@ -132,7 +133,23 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: SafeArea(
         child: Container(
-          child: BlocBuilder<YearbookCubit, YearbookState>(
+          child:
+          BlocBuilder<YearbookblocBloc, YearbookblocState>(
+            builder: (context, state) {
+              if(!(state is YearbookLoadingbloc))
+              {
+                print('CircularProgressIndicator');
+                return const Center(child: CircularProgressIndicator());
+              }else
+              {
+                print('DOne');
+                final posts  = (state as YearbookLoadingbloc).bookResponses;
+                return _buildListView(context, posts.response!.data);
+              }
+
+            },
+          ),
+       /*   BlocBuilder<YearbookCubit, YearbookState>(
   builder: (context, state) {
     if(!(state is YearbookLoading))
       {
@@ -146,7 +163,7 @@ class _MyHomePageState extends State<MyHomePage> {
         }
 
   },
-),
+),*/
           color: Colors.grey.shade200,
         ),
       ),
