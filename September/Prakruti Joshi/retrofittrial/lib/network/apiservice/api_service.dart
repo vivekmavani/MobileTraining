@@ -13,9 +13,10 @@ abstract class ApiService{
           receiveTimeout: 30000,
           connectTimeout: 30000,
           headers: {
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
             'Accept': 'application/json',
-            'Authorization': 'Bearer 950756f02948a64e992eaee4626a4818db59c4ed',
+            'Authorization': 'Bearer 636b40298e0ef1dac10092e9cf095db8944df878',
+            'X-API-Version' : 'v2',
           }
       );
           dio.interceptors.add(LogInterceptor(responseBody: true, requestBody: true));
